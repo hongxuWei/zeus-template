@@ -1,11 +1,11 @@
 {
-  "name": "zeus",
-  "version": "0.0.1",
-  "description": "前端构建工具",
-  "author": "hongxu",
+  "name": "<%=projectName%>",
+  "version": "1.0.0",
+  "description": "<%=projectName%>",
+  "author": "<%=projectName%>",
   "license": "MIT",
   "bin": {
-    "zeus": "./bin/zeus.js"
+    "<%=projectName%>": "./bin/<%=projectName%>.js"
   },
   "scripts": {
     "start": "rollup -c --watch",

@@ -5,7 +5,7 @@ export default {
   output: {
     banner: '#!/usr/bin/env node',
     format: 'cjs',
-    file: './bin/zeus.js'
+    file: './bin/<%=projectName%>.js'
   },
   plugins: [
     json()
