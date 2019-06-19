@@ -9,7 +9,7 @@ program.version(version).usage("<command> [options]")
 program
   .command("test <project-name>")
   .action((name) => {
-    console.log(`it's a example named ${name}`)
+    console.log(`It's a example named ${name}`)
   })
 
 program.arguments("<command>").action(cmd => {
