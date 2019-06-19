@@ -1,0 +1,51 @@
+{
+  "name": "zeus",
+  "version": "0.0.1",
+  "description": "前端构建工具",
+  "author": "hongxu",
+  "license": "MIT",
+  "bin": {
+    "zeus": "./bin/zeus.js"
+  },
+  "scripts": {
+    "start": "rollup -c --watch",
+    "build": "rollup -c",
+    "lint": "eslint src"
+  },
+  "files": [
+    "bin"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "commander": "^2.20.0",
+    "download-git-repo": "^2.0.0",
+    "execa": "^1.0.0",
+    "ora": "^3.4.0",
+    "semver": "^6.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "husky": "^2.4.1",
+    "lint-staged": "^8.2.0",
+    "node-loader": "^0.6.0",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^1.11.0",
+    "rollup": "^1.15.6",
+    "rollup-plugin-json": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=8"
+  }
+}
