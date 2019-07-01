@@ -3,7 +3,10 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const Autoprefixer = require('autoprefixer')
+
+const DIST_PATH = path.join(__dirname, '../dist')
 
 module.exports = {
   entry: {
@@ -12,7 +15,7 @@ module.exports = {
   output: {
     filename: 'js/[name].[hash].js',
     // TODO: 使用 CDN 和资源 hash 的示例
-    path:  path.join(__dirname, '../dist')
+    path: DIST_PATH
   },
   resolve: {
     extensions: [".ts", ".tsx", '.js', '.jsx']
@@ -24,14 +27,33 @@ module.exports = {
     new ExtractTextPlugin('css/[name].[chunkhash:8].css'),
     Autoprefixer,
     new CleanWebpackPlugin(),
+    new CopyWebpackPlugin([
+      {
+        from: path.join(__dirname, '../client/public/favicon.ico'),
+        to: './'
+      }
+    ])
   ],
   module: {
     rules: [
       {
+        test: /\.(png|jpg|gif|svg)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              outputPath: 'images/'
+            }
+          }
+        ]
+      },
+      {
         test: /\.less$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
-          use: ["css-loader", "postcss-loader", "less-loader"]
+          use: ["css-loader", "postcss-loader", "less-loader"],
+          publicPath: '../'
         })
       },
       {
