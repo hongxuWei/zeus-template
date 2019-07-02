@@ -1,7 +1,7 @@
 const path =require('path');
-const config = require('./webpack.base.config')
-const webpack = require('webpack')
-const merge = require('webpack-merge')
+const config = require('./webpack.base.config');
+const webpack = require('webpack');
+const merge = require('webpack-merge');
 
 const _config = {
   mode: 'development',
@@ -9,13 +9,13 @@ const _config = {
   devServer: {
     contentBase: path.join(__dirname, '../dist'),
     historyApiFallback: true, //不跳转
-    port:'8081',
-    hot: true
+    hot: true,
+    open: true
   },
   plugins: [
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
   ]
 }
 
-module.exports = merge(config, _config)
+module.exports = merge(_config, config)
