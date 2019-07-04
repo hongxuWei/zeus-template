@@ -1,10 +1,10 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 
-import Hello from './pages/Hello/Hello';
-import './index.less';
+import App from './App'
+import './index.less'
 
 ReactDOM.render(
-  <Hello name="test"/>,
+  <App />,
   document.getElementById('root')
-);
+)

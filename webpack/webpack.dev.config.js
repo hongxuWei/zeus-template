@@ -1,7 +1,10 @@
-const path =require('path');
-const config = require('./webpack.base.config');
-const webpack = require('webpack');
-const merge = require('webpack-merge');
+const path =require('path')
+const config = require('./webpack.base.config')
+const apiMocker = require('mocker-api')
+const webpack = require('webpack')
+const merge = require('webpack-merge')
+
+const DEV_USE_MOCK = process.env.MOCK === 'on'
 
 const _config = {
   mode: 'development',
@@ -11,7 +14,10 @@ const _config = {
     watchContentBase: true,
     historyApiFallback: true, //不跳转
     hot: true,
-    open: true
+    open: true,
+    before(app) {
+      apiMocker(app, path.resolve('client/src/mocks'))
+    }
   },
   module: {
     rules: [
@@ -42,6 +48,7 @@ const _config = {
   plugins: [
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({ DEV_USE_MOCK })
   ]
 }
 
