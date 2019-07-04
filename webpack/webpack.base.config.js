@@ -1,6 +1,5 @@
 var path = require("path")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const Autoprefixer = require('autoprefixer')
@@ -23,7 +22,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, '../client/public/index.html'),
     }),
-    new ExtractTextPlugin('css/[name].[chunkhash:8].css'),
     Autoprefixer,
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
@@ -46,14 +44,6 @@ module.exports = {
             }
           }
         ]
-      },
-      {
-        test: /\.less$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: ["css-loader", "postcss-loader", "less-loader"],
-          publicPath: '../'
-        })
       },
       {
         test: /\.ts(x?)$/,

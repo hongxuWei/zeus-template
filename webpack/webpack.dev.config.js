@@ -8,9 +8,18 @@ const _config = {
   devtool: "source-map",
   devServer: {
     contentBase: path.join(__dirname, '../dist'),
+    watchContentBase: true,
     historyApiFallback: true, //不跳转
     hot: true,
     open: true
+  },
+  module: {
+    rules: [
+      {
+        test: /\.less$/,
+        use: ["style-loader", "css-loader", "postcss-loader", "less-loader"],
+      }
+    ]
   },
   plugins: [
     new webpack.NamedModulesPlugin(),
