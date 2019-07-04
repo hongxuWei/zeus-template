@@ -10,7 +10,7 @@ class App extends React.PureComponent {
   }
 
   componentDidMount() {
-    services.getTestData({test: 1}).then((res) => {
+    services.getTestData({test: 1}).then(res => {
       if (res.code === SUCCESS) {
         const { name } = res.data
         this.setState({ name })
