@@ -14,8 +14,7 @@
     "strictNullChecks": true
   },
   "exclude": [
-    "node_modules",
-    "mocks",
+    "src/mocks/*",
     "postcss.config.js"
   ]
 }
