@@ -15,7 +15,24 @@ const _config = {
         test: /\.less$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
-          use: ["css-loader", "postcss-loader", "less-loader"],
+          use: [
+            {
+              loader: "css-loader",
+              options: {
+                modules: {
+                  localIdentName: '[name]_[local]_[hash:base64:5]'
+                },
+                localsConvention: 'camelCaseOnly'
+              }
+            },
+            "postcss-loader",
+            {
+              loader: "less-loader",
+              options: {
+                modules: true,
+              }
+            }
+          ],
           publicPath: '../'
         })
       }

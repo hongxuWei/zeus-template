@@ -17,7 +17,25 @@ const _config = {
     rules: [
       {
         test: /\.less$/,
-        use: ["style-loader", "css-loader", "postcss-loader", "less-loader"],
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                localIdentName: '[name]_[local]_[hash:base64:5]'
+              },
+              localsConvention: 'camelCaseOnly'
+            }
+          },
+          "postcss-loader",
+          {
+            loader: "less-loader",
+            options: {
+              modules: true
+            }
+          }
+        ],
       }
     ]
   },
