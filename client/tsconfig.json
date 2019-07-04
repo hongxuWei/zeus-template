@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    // "outDir": "build/dist",
     "module": "commonjs",
     "target": "es5",
     "lib": ["es6", "dom"],
@@ -16,14 +15,6 @@
   },
   "exclude": [
     "node_modules",
-    "build",
-    "scripts",
-    "acceptance-tests",
-    "webpack",
-    "jest",
-    "src/setupTests.ts"
-  ],
-  "types": [
-    "typePatches"
+    "postcss.config.js"
   ]
 }
