@@ -1,6 +1,5 @@
 var path = require("path")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const Autoprefixer = require('autoprefixer')
 
@@ -23,7 +22,6 @@ module.exports = {
       template: path.join(__dirname, '../client/public/index.html'),
     }),
     Autoprefixer,
-    new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
       {
         from: path.join(__dirname, '../client/public/favicon.ico'),

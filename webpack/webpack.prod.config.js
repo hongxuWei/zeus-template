@@ -1,10 +1,12 @@
 const config = require('./webpack.base.config')
 const merge = require('webpack-merge')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const _config = {
   mode: 'production',
   plugins: [
+    new CleanWebpackPlugin(),
     new ExtractTextPlugin('css/[name].[chunkhash:8].css')
   ],
   module: {
