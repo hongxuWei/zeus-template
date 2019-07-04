@@ -1,7 +1,5 @@
 
 // mock datas
-const chalk = require('chalk')
-
 const mocks = {
   ...require('./test')
 }
