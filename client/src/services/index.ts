@@ -3,15 +3,15 @@
 import axios from 'axios'
 import { FAILED } from '../constants/response'
 
+const useMock = DEV_USE_MOCK || false
+
 const instance = axios.create({
-  baseURL: DEV_USE_MOCK ? '/mock/' : '/',
+  baseURL: useMock ? '/mock/' : '/',
 })
 
 instance.interceptors.response.use(
-  (res) => {
-    return res.data
-  },
-  (error) => (
+  res => res.data,
+  error => (
     Promise.resolve({
       code: FAILED,
       data: { error },

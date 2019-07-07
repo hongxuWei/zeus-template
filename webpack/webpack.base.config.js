@@ -2,8 +2,10 @@ var path = require("path")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const Autoprefixer = require('autoprefixer')
+const webpack = require('webpack')
 
 const DIST_PATH = path.join(__dirname, '../dist')
+const DEV_USE_MOCK = process.env.MOCK === 'on'
 
 module.exports = {
   entry: {
@@ -27,7 +29,8 @@ module.exports = {
         from: path.join(__dirname, '../client/public/favicon.ico'),
         to: './'
       }
-    ])
+    ]),
+    new webpack.DefinePlugin({ DEV_USE_MOCK })
   ],
   module: {
     rules: [
@@ -46,7 +49,7 @@ module.exports = {
       {
         test: /\.ts(x?)$/,
         exclude: /node_modules/,
-        use: [{ loader: "ts-loader" }]
+        use: [{ loader: "babel-loader" }, { loader: "ts-loader" }]
       },
       // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
       {

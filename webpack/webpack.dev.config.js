@@ -4,8 +4,6 @@ const apiMocker = require('mocker-api')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 
-const DEV_USE_MOCK = process.env.MOCK === 'on'
-
 const _config = {
   mode: 'development',
   devtool: "source-map",
@@ -48,7 +46,6 @@ const _config = {
   plugins: [
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.DefinePlugin({ DEV_USE_MOCK })
   ]
 }
 
