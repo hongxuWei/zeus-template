@@ -1,31 +1,35 @@
 import * as React from 'react'
-import * as services from './services/Test.service'
-import { SUCCESS } from './constants/response'
+import { observer, inject } from 'mobx-react'
+import { UserStore } from './stores/user.store'
 
-import Test from './pages/Test'
+import TestC from './components/Test'
 
-class App extends React.PureComponent {
-  state = {
-    name: 'Home 2'
+interface IProps {
+  userStore: UserStore
+}
+
+@inject('userStore')
+@observer
+class Test extends React.PureComponent {
+  constructor(props: UserStore) {
+    super(props)
   }
 
+  get injected(): IProps {
+    return this.props as IProps
+  };
+
   componentDidMount() {
-    services.getTestData({test: 1}).then(res => {
-      if (res.code === SUCCESS) {
-        const { name } = res.data
-        this.setState({ name })
-      } else {
-        console.log('err', res.message)
-      }
-    })
+    this.injected.userStore.fetchUserInfo({ test: 1})
   }
 
   render() {
-    const { name } = this.state
+    const { userStore } = this.injected
+    const { name } = userStore.userInfo
     return (
-      <Test text={name}/>
+      <TestC text={name}/>
     )
   }
 }
 
-export default App
+export default Test
