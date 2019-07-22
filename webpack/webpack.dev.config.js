@@ -3,6 +3,8 @@ const config = require('./webpack.base.config')
 const apiMocker = require('mocker-api')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const ChromeExtensionReloader  = require('webpack-chrome-extension-reloader')
 
 const _config = {
   mode: 'development',
@@ -10,9 +12,10 @@ const _config = {
   devServer: {
     contentBase: path.join(__dirname, '../dist'),
     watchContentBase: true,
-    historyApiFallback: true, //不跳转
-    hot: true,
+    historyApiFallback: true,     // 不跳转
     open: true,
+    overlay: true,                // 报错提示
+    writeToDisk: true,            // 写入磁盘文件
     before(app) {
       apiMocker(app, path.resolve('client/src/mocks'))
     }
@@ -45,7 +48,13 @@ const _config = {
   },
   plugins: [
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
+    new ChromeExtensionReloader({
+      port: 9090, // Which port use to create the server
+      reloadPage: true, // Force the reload of the page also
+      entries: { // The entries used for the content/background scripts
+        background: 'background' // *REQUIRED
+      }
+    })
   ]
 }
 

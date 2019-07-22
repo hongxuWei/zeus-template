@@ -1,9 +1,9 @@
 const config = require('./webpack.base.config')
 const merge = require('webpack-merge')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const optimizeCss =  require('optimize-css-assets-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const optimizeCss =  require('optimize-css-assets-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const _config = {
   mode: 'production',
   plugins: [

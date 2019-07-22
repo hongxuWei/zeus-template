@@ -1,7 +1,7 @@
 
 // mock datas
 const mocks = {
-  ...require('./test')
+  ...require('./popup')
 }
 
 const wrapMocksData = mocks => {

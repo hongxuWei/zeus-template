@@ -9,10 +9,11 @@ const DEV_USE_MOCK = process.env.MOCK === 'on'
 
 module.exports = {
   entry: {
-    app: path.join(__dirname, '../client/src/index.tsx')
+    app: path.join(__dirname, '../client/src/index.tsx'),
+    background: path.join(__dirname, '../client/src/pages/Background.ts')
   },
   output: {
-    filename: 'js/[name].[hash].js',
+    filename: 'js/[name].js',
     // TODO: 使用 CDN 和资源 hash 的示例
     path: DIST_PATH
   },
@@ -26,9 +27,9 @@ module.exports = {
     Autoprefixer,
     new CopyWebpackPlugin([
       {
-        from: path.join(__dirname, '../client/public/favicon.ico'),
+        from: path.join(__dirname, '../client/public'),
         to: './'
-      }
+      },
     ]),
     new webpack.DefinePlugin({ DEV_USE_MOCK })
   ],
@@ -40,7 +41,6 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 8192,
               outputPath: 'images/'
             }
           }
@@ -58,23 +58,5 @@ module.exports = {
         loader: "source-map-loader"
       }
     ]
-  },
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        commons: {
-          name: "commons",
-          chunks: "all",
-          minChunks: 2
-        },
-        vendor: {
-          test: /node_modules/,
-          chunks: 'all',
-          name: 'vendor',
-          priority: 10,
-          minSize: 0,
-        }
-      }
-    }
   }
 }

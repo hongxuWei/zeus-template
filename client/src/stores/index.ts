@@ -1,9 +1,9 @@
-import userStore, { UserStore } from './user.store'
+import popupStore, { PopupStore } from './popup.store'
 
 export type RootStore = {
-  userStore: UserStore
+  popupStore: PopupStore
 }
 
 export default {
-  userStore
+  popupStore
 }
