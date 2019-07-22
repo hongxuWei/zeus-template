@@ -13,6 +13,7 @@ const _config = {
     historyApiFallback: true, //不跳转
     hot: true,
     open: true,
+    overlay: true,
     before(app) {
       apiMocker(app, path.resolve('client/src/mocks'))
     }
