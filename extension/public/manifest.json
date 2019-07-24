@@ -4,18 +4,19 @@
   "version": "1.0.0",
   "description": "Awesome Work Flow - Extension",
   "icons": {
-    "16": "statics/icon.png",
-    "48": "statics/icon.png",
-    "128": "statics/icon.png"
+    "16": "statics/logo.ico",
+    "48": "statics/logo.ico",
+    "128": "statics/logo.ico"
   },
   "background": {
     "scripts": ["js/background.js"]
   },
   "browser_action": {
-    "defailt_icon": "statics/icon.png",
+    "defailt_icon": "statics/logo.ico",
     "default_title": "Awesome Work Flow",
     "default_popup": "index.html#popup"
   },
+  "chrome_url_overrides": { "newtab": "index.html#newtab" },
   "permissions": [
     "tabs",
     "webRequest",

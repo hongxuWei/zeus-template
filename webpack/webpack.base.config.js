@@ -7,10 +7,12 @@ const webpack = require('webpack')
 const DIST_PATH = path.join(__dirname, '../dist')
 const DEV_USE_MOCK = process.env.MOCK === 'on'
 
+const { name } = require('../package.json')
+
 module.exports = {
   entry: {
-    app: path.join(__dirname, '../client/src/index.tsx'),
-    background: path.join(__dirname, '../client/src/pages/Background.ts')
+    app: path.join(__dirname, '../extension/src/index.tsx'),
+    background: path.join(__dirname, '../extension/src/pages/Background.ts')
   },
   output: {
     filename: 'js/[name].js',
@@ -22,12 +24,13 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, '../client/public/index.html'),
+      template: path.join(__dirname, '../extension/public/index.html'),
+      title: name,
     }),
     Autoprefixer,
     new CopyWebpackPlugin([
       {
-        from: path.join(__dirname, '../client/public'),
+        from: path.join(__dirname, '../extension/public'),
         to: './'
       },
     ]),
@@ -36,7 +39,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(png|jpg|gif|svg|ico)$/,
         use: [
           {
             loader: 'url-loader',

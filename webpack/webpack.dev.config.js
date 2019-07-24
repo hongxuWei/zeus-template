@@ -3,7 +3,6 @@ const config = require('./webpack.base.config')
 const apiMocker = require('mocker-api')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const ChromeExtensionReloader  = require('webpack-chrome-extension-reloader')
 
 const _config = {
@@ -17,7 +16,7 @@ const _config = {
     overlay: true,                // 报错提示
     writeToDisk: true,            // 写入磁盘文件
     before(app) {
-      apiMocker(app, path.resolve('client/src/mocks'))
+      apiMocker(app, path.resolve('extension/src/mocks'))
     }
   },
   module: {

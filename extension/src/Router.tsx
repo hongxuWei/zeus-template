@@ -1,8 +1,9 @@
 import * as React from 'react'
-import { Route, HashRouter, BrowserRouter } from 'react-router-dom'
+import { Route, HashRouter } from 'react-router-dom'
 import { createBrowserHistory } from "history"
 
 import Popup from './pages/Popup'
+import NewTab from './pages/NewTab'
 
 class Test extends React.PureComponent {
   render() {
@@ -24,6 +25,10 @@ class Router extends React.PureComponent {
           path="/popup"
           history={history}
           component={Popup} />
+        <Route exact
+          path="/newtab"
+          history={history}
+          component={NewTab} />
       </HashRouter>
     )
   }
